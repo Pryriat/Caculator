@@ -3,8 +3,7 @@
   - Arithmetic
   - Branckets and Power
   - Negative number
-<<<<<<< HEAD
 =======
 - Plan
-  - Make the ui looks better
+  - add background
 
