@@ -4,4 +4,4 @@
   - Branckets and Power
   - Negative number
 - Plan
-  - Make the ui looks better
+  - Add background
