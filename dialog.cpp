@@ -3,141 +3,126 @@
 #include<caculate.h>
 #include<head.h>
 #include<QLayout>
-Dialog::Dialog(QWidget *parent) :
-    QDialog(parent)
-    //ui(new Ui::Dialog)
+Dialog::Dialog(QWidget *parent) :QDialog(parent)
+  //ui(new Ui::Dialog)
 {
-      this->setMaximumSize(640,480);
-      //this->setMinimumSize(640,480);
-      button_0 = new QPushButton("0");
-      button_1 = new QPushButton("1");
-      button_2 = new QPushButton("2");
-      button_3 = new QPushButton("3");
-      button_4 = new QPushButton("4");
-      button_5 = new QPushButton("5");
-      button_6 = new QPushButton("6");
-      button_7 = new QPushButton("7");
-      button_8 = new QPushButton("8");
-      button_9 = new QPushButton("9");
-      button_mul = new QPushButton("*");
-      button_dec = new QPushButton("-");
-      button_add = new QPushButton("+");
-      button_dev = new QPushButton("/");
-      button_lb = new QPushButton("(");
-      button_rb = new QPushButton(")");
-      button_times = new QPushButton("^");
-      button_dot = new QPushButton(".");
-      button_equ = new QPushButton("=");
-      button_AC = new QPushButton("AC");
+    QSize size(40,40);
+    //this->setMaximumSize(640,480);
+    //this->setMinimumSize(640,480);
+    button_0 = new QPushButton("0");
+    button_0->setFixedSize(size);
+    button_1 = new QPushButton("1");
+    button_1->setFixedSize(size);
+    button_2 = new QPushButton("2");
+    button_2->setFixedSize(size);
+    button_3 = new QPushButton("3");
+    button_3->setFixedSize(size);
+    button_4 = new QPushButton("4");
+    button_4->setFixedSize(size);
+    button_5 = new QPushButton("5");
+    button_5->setFixedSize(size);
+    button_6 = new QPushButton("6");
+    button_6->setFixedSize(size);
+    button_7 = new QPushButton("7");
+    button_7->setFixedSize(size);
+    button_8 = new QPushButton("8");
+    button_8->setFixedSize(size);
+    button_9 = new QPushButton("9");
+    button_9->setFixedSize(size);
+    button_mul = new QPushButton("*");
+    button_mul->setFixedSize(size);
+    button_dec = new QPushButton("-");
+    button_dec->setFixedSize(size);
+    button_add = new QPushButton("+");
+    button_add->setFixedSize(size);
+    button_dev = new QPushButton("/");
+    button_dev->setFixedSize(size);
+    button_lb = new QPushButton("(");
+    button_lb->setFixedSize(size);
+    button_rb = new QPushButton(")");
+    button_rb->setFixedSize(size);
+    button_times = new QPushButton("^");
+    button_times->setFixedSize(size);
+    button_dot = new QPushButton(".");
+    button_dot->setFixedSize(size);
+    button_equ = new QPushButton("=");
+    button_equ->setFixedSize(size);
+    button_AC = new QPushButton("AC");
+    button_AC->setFixedSize(size);
 
-      resault = new QLineEdit();
-      history = new QLabel("历史记录");
-      history_edit = new QTextEdit;
-      historydata = new QString;
-/*
-      QVBoxLayout *frame = new QVBoxLayout;
-      QHBoxLayout *top = new QHBoxLayout;
-      QHBoxLayout *first = new QHBoxLayout;
-      QHBoxLayout *second = new QHBoxLayout;
-      QHBoxLayout *third = new QHBoxLayout;
-      QHBoxLayout *fourth = new QHBoxLayout;
+    resault = new QLineEdit();
+    resault->setFixedHeight(30);
+    history = new QLabel("历史记录");
+    history_edit = new QTextEdit;
+    historydata = new QString;
+    history->setFixedWidth(50);
 
-      top->addWidget(resault);
+    QGridLayout* mainlayout = new QGridLayout(this);
+    mainlayout->addWidget(resault,0,0,1,5);
+    mainlayout->addWidget(button_1,1,0,1,1);
+    mainlayout->addWidget(button_2,1,1,1,1);
+    mainlayout->addWidget(button_3,1,2,1,1);
+    mainlayout->addWidget(button_add,1,3,1,1);
+    mainlayout->addWidget(button_dec,1,4,1,1);
+    mainlayout->addWidget(button_4,2,0,1,1);
+    mainlayout->addWidget(button_5,2,1,1,1);
+    mainlayout->addWidget(button_6,2,2,1,1);
+    mainlayout->addWidget(button_mul,2,3,1,1);
+    mainlayout->addWidget(button_dev,2,4,1,1);
+    mainlayout->addWidget(button_7,3,0,1,1);
+    mainlayout->addWidget(button_8,3,1,1,1);
+    mainlayout->addWidget(button_9,3,2,1,1);
+    mainlayout->addWidget(button_lb,3,3,1,1);
+    mainlayout->addWidget(button_rb,3,4,1,1);
+    mainlayout->addWidget(button_times,4,0,1,1);
+    mainlayout->addWidget(button_0,4,1,1,1);
+    mainlayout->addWidget(button_dot,4,2,1,1);
+    mainlayout->addWidget(button_equ,4,3,1,1);
+    mainlayout->addWidget(button_AC,4,4,1,1);
+    mainlayout->addWidget(history,0,5,1,3);
+    mainlayout->addWidget(history_edit,1,5,4,3);
+    mainlayout->setMargin(10);
+    //mainlayout->setSpacing(10);
+    mainlayout->setRowStretch(0,1);
+    mainlayout->setRowStretch(1,1);
+    mainlayout->setRowStretch(2,1);
+    mainlayout->setRowStretch(3,1);
+    mainlayout->setRowStretch(4,1);
 
-      first->addWidget(button_1);
-      first->addWidget(button_2);
-      first->addWidget(button_3);
-      first->addWidget(button_add);
-      first->addWidget(button_dec);
+    mainlayout->setColumnStretch(0,1);
+    mainlayout->setColumnStretch(1,1);
+    mainlayout->setColumnStretch(2,1);
+    mainlayout->setColumnStretch(3,1);
+    mainlayout->setColumnStretch(4,1);
+    mainlayout->setColumnStretch(5,3);
+    //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
+    //mainlayout->setRowStretch(0,1);
+    //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
 
-      second->addWidget(button_4);
-      second->addWidget(button_5);
-      second->addWidget(button_6);
-      second->addWidget(button_mul);
-      second->addWidget(button_dev);
+    connect(button_0,SIGNAL(clicked(bool)),this,SLOT(button_0_clicked()));
+    connect(button_1,SIGNAL(clicked(bool)),this,SLOT(button_1_clicked()));
+    connect(button_2,SIGNAL(clicked(bool)),this,SLOT(button_2_clicked()));
+    connect(button_3,SIGNAL(clicked(bool)),this,SLOT(button_3_clicked()));
+    connect(button_4,SIGNAL(clicked(bool)),this,SLOT(button_4_clicked()));
+    connect(button_5,SIGNAL(clicked(bool)),this,SLOT(button_5_clicked()));
+    connect(button_6,SIGNAL(clicked(bool)),this,SLOT(button_6_clicked()));
+    connect(button_7,SIGNAL(clicked(bool)),this,SLOT(button_7_clicked()));
+    connect(button_8,SIGNAL(clicked(bool)),this,SLOT(button_8_clicked()));
+    connect(button_9,SIGNAL(clicked(bool)),this,SLOT(button_9_clicked()));
+    connect(button_add,SIGNAL(clicked(bool)),this,SLOT(button_add_clicked()));
+    connect(button_mul,SIGNAL(clicked(bool)),this,SLOT(button_mul_clicked()));
+    connect(button_dec,SIGNAL(clicked(bool)),this,SLOT(button_dec_clicked()));
+    connect(button_dev,SIGNAL(clicked(bool)),this,SLOT(button_dev_clicked()));
+    connect(button_dot,SIGNAL(clicked(bool)),this,SLOT(button_dot_clicked()));
+    connect(button_lb,SIGNAL(clicked(bool)),this,SLOT(button_lb_clicked()));
+    connect(button_rb,SIGNAL(clicked(bool)),this,SLOT(button_rb_clicked()));
+    connect(button_times,SIGNAL(clicked(bool)),this,SLOT(button_times_clicked()));
+    connect(button_AC,SIGNAL(clicked(bool)),this,SLOT(button_AC_clicked()));
+    connect(button_equ,SIGNAL(clicked(bool)),this,SLOT(button_equ_clicked()));
 
-      third->addWidget(button_7);
-      third->addWidget(button_8);
-      third->addWidget(button_9);
-      third->addWidget(button_lb);
-      third->addWidget(button_rb);
+    //setLayout(frame);
 
-      fourth->addWidget(button_times);
-      fourth->addWidget(button_0);
-      fourth->addWidget(button_dot);
-      fourth->addWidget(button_equ);
-      fourth->addWidget(button_AC);
-
-      frame->addLayout(top);
-      frame->addLayout(first);
-      frame->addLayout(second);
-      frame->addLayout(third);
-      frame->addLayout(fourth);
-*/
-      QGridLayout* mainlayout = new QGridLayout(this);
-      mainlayout->addWidget(resault,0,0,1,5);
-      mainlayout->addWidget(button_1,1,0,1,1);
-      mainlayout->addWidget(button_2,1,1,1,1);
-      mainlayout->addWidget(button_3,1,2,1,1);
-      mainlayout->addWidget(button_add,1,3,1,1);
-      mainlayout->addWidget(button_dec,1,4,1,1);
-      mainlayout->addWidget(button_4,2,0,1,1);
-      mainlayout->addWidget(button_5,2,1,1,1);
-      mainlayout->addWidget(button_6,2,2,1,1);
-      mainlayout->addWidget(button_mul,2,3,1,1);
-      mainlayout->addWidget(button_dev,2,4,1,1);
-      mainlayout->addWidget(button_7,3,0,1,1);
-      mainlayout->addWidget(button_8,3,1,1,1);
-      mainlayout->addWidget(button_9,3,2,1,1);
-      mainlayout->addWidget(button_lb,3,3,1,1);
-      mainlayout->addWidget(button_rb,3,4,1,1);
-      mainlayout->addWidget(button_times,4,0,1,1);
-      mainlayout->addWidget(button_0,4,1,1,1);
-      mainlayout->addWidget(button_dot,4,2,1,1);
-      mainlayout->addWidget(button_equ,4,3,1,1);
-      mainlayout->addWidget(button_AC,4,4,1,1);
-      mainlayout->addWidget(history,0,5,1,3);
-      mainlayout->addWidget(history_edit,1,5,4,3);
-      mainlayout->setMargin(10);
-      mainlayout->setSpacing(10);
-      mainlayout->setRowStretch(0,1);
-      mainlayout->setRowStretch(1,1);
-      mainlayout->setRowStretch(2,1);
-      mainlayout->setRowStretch(3,1);
-      mainlayout->setRowStretch(4,1);
-      mainlayout->setColumnStretch(0,1);
-      mainlayout->setColumnStretch(1,1);
-      mainlayout->setColumnStretch(2,1);
-      mainlayout->setColumnStretch(3,1);
-      mainlayout->setColumnStretch(4,1);
-      //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
-      //mainlayout->setRowStretch(0,1);
-      //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
-
-      connect(button_0,SIGNAL(clicked(bool)),this,SLOT(button_0_clicked()));
-      connect(button_1,SIGNAL(clicked(bool)),this,SLOT(button_1_clicked()));
-      connect(button_2,SIGNAL(clicked(bool)),this,SLOT(button_2_clicked()));
-      connect(button_3,SIGNAL(clicked(bool)),this,SLOT(button_3_clicked()));
-      connect(button_4,SIGNAL(clicked(bool)),this,SLOT(button_4_clicked()));
-      connect(button_5,SIGNAL(clicked(bool)),this,SLOT(button_5_clicked()));
-      connect(button_6,SIGNAL(clicked(bool)),this,SLOT(button_6_clicked()));
-      connect(button_7,SIGNAL(clicked(bool)),this,SLOT(button_7_clicked()));
-      connect(button_8,SIGNAL(clicked(bool)),this,SLOT(button_8_clicked()));
-      connect(button_9,SIGNAL(clicked(bool)),this,SLOT(button_9_clicked()));
-      connect(button_add,SIGNAL(clicked(bool)),this,SLOT(button_add_clicked()));
-      connect(button_mul,SIGNAL(clicked(bool)),this,SLOT(button_mul_clicked()));
-      connect(button_dec,SIGNAL(clicked(bool)),this,SLOT(button_dec_clicked()));
-      connect(button_dev,SIGNAL(clicked(bool)),this,SLOT(button_dev_clicked()));
-      connect(button_dot,SIGNAL(clicked(bool)),this,SLOT(button_dot_clicked()));
-      connect(button_lb,SIGNAL(clicked(bool)),this,SLOT(button_lb_clicked()));
-      connect(button_rb,SIGNAL(clicked(bool)),this,SLOT(button_rb_clicked()));
-      connect(button_times,SIGNAL(clicked(bool)),this,SLOT(button_times_clicked()));
-      connect(button_AC,SIGNAL(clicked(bool)),this,SLOT(button_AC_clicked()));
-      connect(button_equ,SIGNAL(clicked(bool)),this,SLOT(button_equ_clicked()));
-
-      //setLayout(frame);
-
-        //ui->setupUi(this);
+    //ui->setupUi(this);
 }
 
 void Dialog::button_0_clicked()
@@ -245,7 +230,7 @@ void Dialog::button_equ_clicked()
     QString tempStr;
     QString erro_str;
     string equation = str.toStdString();
-   try
+    try
     {
         analyze(equation);
         vector<num> t = numbers(equation);
@@ -287,12 +272,12 @@ void Dialog::button_equ_clicked()
             resault->setText(erro_str);
             break;
         case 7:
-           erro_str = QString("不支持符号连用，错误子式为%1%2%3").arg(a.position1)\
+            erro_str = QString("不支持符号连用，错误子式为%1%2%3").arg(a.position1)\
                     .arg(a.position2).arg(a.position3);
-           resault->setText(erro_str);
+            resault->setText(erro_str);
             break;
         case 8:
-           erro_str = QString("非法输入,非法字符为%1").arg(a.position1);
+            erro_str = QString("非法输入,非法字符为%1").arg(a.position1);
             resault->setText(erro_str);
             break;
         }
