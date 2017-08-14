@@ -3,59 +3,83 @@
 #include<caculate.h>
 #include<head.h>
 #include<QLayout>
+
+void Dialog::setbutton(QPushButton *p, QFont* font, QSize* size, QGraphicsOpacityEffect* effect)
+{
+    p->setFlat(true);
+    p->setFixedSize(*size);
+    p->setFont(*font);
+    //p->setGraphicsEffect(effect);
+}
+
 Dialog::Dialog(QWidget *parent) :QDialog(parent)
   //ui(new Ui::Dialog)
 {
-    QSize size(40,40);
-    //this->setMaximumSize(640,480);
-    //this->setMinimumSize(640,480);
+    QSize size(50,50);
+    this->setMinimumSize(QSize(480,480));
+    QGraphicsOpacityEffect* p = new QGraphicsOpacityEffect(this);
+    p->setOpacity(0.5);
+    QGraphicsOpacityEffect* pq = new QGraphicsOpacityEffect(this);
+    pq->setOpacity(0.5);
+    QFont font;
+    font.setPointSize(25);
     button_0 = new QPushButton("0");
-    button_0->setFixedSize(size);
     button_1 = new QPushButton("1");
-    button_1->setFixedSize(size);
     button_2 = new QPushButton("2");
-    button_2->setFixedSize(size);
     button_3 = new QPushButton("3");
-    button_3->setFixedSize(size);
     button_4 = new QPushButton("4");
-    button_4->setFixedSize(size);
     button_5 = new QPushButton("5");
-    button_5->setFixedSize(size);
     button_6 = new QPushButton("6");
-    button_6->setFixedSize(size);
     button_7 = new QPushButton("7");
-    button_7->setFixedSize(size);
     button_8 = new QPushButton("8");
-    button_8->setFixedSize(size);
     button_9 = new QPushButton("9");
-    button_9->setFixedSize(size);
     button_mul = new QPushButton("*");
-    button_mul->setFixedSize(size);
     button_dec = new QPushButton("-");
-    button_dec->setFixedSize(size);
     button_add = new QPushButton("+");
-    button_add->setFixedSize(size);
     button_dev = new QPushButton("/");
-    button_dev->setFixedSize(size);
     button_lb = new QPushButton("(");
-    button_lb->setFixedSize(size);
     button_rb = new QPushButton(")");
-    button_rb->setFixedSize(size);
     button_times = new QPushButton("^");
-    button_times->setFixedSize(size);
     button_dot = new QPushButton(".");
-    button_dot->setFixedSize(size);
     button_equ = new QPushButton("=");
-    button_equ->setFixedSize(size);
     button_AC = new QPushButton("AC");
-    button_AC->setFixedSize(size);
+
+    setbutton(button_0,&font,&size,p);
+    setbutton(button_1,&font,&size,p);
+    setbutton(button_2,&font,&size,p);
+    setbutton(button_3,&font,&size,p);
+    setbutton(button_4,&font,&size,p);
+    setbutton(button_5,&font,&size,p);
+    setbutton(button_6,&font,&size,p);
+    setbutton(button_7,&font,&size,p);
+    setbutton(button_8,&font,&size,p);
+    setbutton(button_9,&font,&size,p);
+    setbutton(button_mul,&font,&size,p);
+    setbutton(button_dec,&font,&size,p);
+    setbutton(button_add,&font,&size,p);
+    setbutton(button_dev,&font,&size,p);
+    setbutton(button_lb,&font,&size,p);
+    setbutton(button_rb,&font,&size,p);
+    setbutton(button_times,&font,&size,p);
+    setbutton(button_dot,&font,&size,p);
+    setbutton(button_equ,&font,&size,p);
+    setbutton(button_AC,&font,&size,p);
 
     resault = new QLineEdit();
-    resault->setFixedHeight(30);
-    history = new QLabel("历史记录");
+    resault->setFixedHeight(50);
+    resault->setFixedWidth(300);
+    resault->setFont(font);
+    resault->setStyleSheet("background-color: rgba(0, 0, 0, 0);border-width:0;border-style:outset;");
+    resault->setReadOnly(true);
+    history = new QLabel("历史");
     history_edit = new QTextEdit;
     historydata = new QString;
     history->setFixedWidth(50);
+    font.setPointSize(20);
+    history->setFont(font);
+    history_edit->setFont(font);
+    history_edit->setStyleSheet("background-color: rgba(0, 0, 0, 0);border-width:0;border-style:outset;");
+    history_edit->setReadOnly(true);
 
     QGridLayout* mainlayout = new QGridLayout(this);
     mainlayout->addWidget(resault,0,0,1,5);
@@ -79,7 +103,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     mainlayout->addWidget(button_dot,4,2,1,1);
     mainlayout->addWidget(button_equ,4,3,1,1);
     mainlayout->addWidget(button_AC,4,4,1,1);
-    mainlayout->addWidget(history,0,5,1,3);
+    mainlayout->addWidget(history,0,5,1,3,Qt::AlignCenter);
     mainlayout->addWidget(history_edit,1,5,4,3);
     mainlayout->setMargin(10);
     //mainlayout->setSpacing(10);

@@ -1,4 +1,4 @@
-#ifndef DIALOG_H
+﻿#ifndef DIALOG_H
 #define DIALOG_H
 
 #include <QDialog>
@@ -7,6 +7,7 @@
 #include<QTextEdit>
 #include<QLabel>
 #include<QString>
+#include<QGraphicsEffect>
 namespace Ui {
 class Dialog;
 }
@@ -66,6 +67,7 @@ private slots:
     void button_AC_clicked();
 public:
     explicit Dialog(QWidget *parent = 0);
+    void setbutton(QPushButton* p, QFont* font, QSize* size, QGraphicsOpacityEffect* effect);
     ~Dialog();
 
 private:
