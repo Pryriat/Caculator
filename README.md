@@ -2,6 +2,6 @@
 - Features
   - Arithmetic
   - Branckets and Power
-  - Negative number
-- Plan
-  - Add background
+  - Negative number  
+  
+![image](https://github.com/Pryriat/Caculator/blob/develop/screenshot.png)
