@@ -43,6 +43,8 @@ protected:
     QLabel* history;
     QTextEdit* history_edit;
     QString* historydata;
+    QPixmap background;
+    QPalette pale;
 
 private slots:
     void button_0_clicked();
@@ -68,6 +70,7 @@ private slots:
 public:
     explicit Dialog(QWidget *parent = 0);
     void setbutton(QPushButton* p, QFont* font, QSize* size, QGraphicsOpacityEffect* effect);
+    void resizeEvent(QResizeEvent*);
     ~Dialog();
 
 private:
