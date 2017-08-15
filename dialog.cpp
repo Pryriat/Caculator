@@ -7,22 +7,31 @@
 void Dialog::setbutton(QPushButton *p, QFont* font, QSize* size, QGraphicsOpacityEffect* effect)
 {
     p->setFlat(true);
-    p->setFixedSize(*size);
+    p->setMinimumSize(*size);
     p->setFont(*font);
     //p->setGraphicsEffect(effect);
+
 }
 
 Dialog::Dialog(QWidget *parent) :QDialog(parent)
   //ui(new Ui::Dialog)
 {
     QSize size(50,50);
-    this->setMinimumSize(QSize(480,480));
+    //this->setFixedSize(QSize(1920,1080));
+    this->setMaximumSize(1920,1080);
+    this->setAutoFillBackground(true);
+    background.load(":/bg");
+    this->setMinimumSize(background.size());
+    this->resize(background.size());
+    this->setWindowOpacity(0.9);
+    pale = this->palette();
     QGraphicsOpacityEffect* p = new QGraphicsOpacityEffect(this);
     p->setOpacity(0.5);
     QGraphicsOpacityEffect* pq = new QGraphicsOpacityEffect(this);
     pq->setOpacity(0.5);
     QFont font;
     font.setPointSize(25);
+
     button_0 = new QPushButton("0");
     button_1 = new QPushButton("1");
     button_2 = new QPushButton("2");
@@ -106,19 +115,22 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     mainlayout->addWidget(history,0,5,1,3,Qt::AlignCenter);
     mainlayout->addWidget(history_edit,1,5,4,3);
     mainlayout->setMargin(10);
+    //mainlayout->setSizeConstraint(QLayout::SetMaximumSize);
+    pale.setBrush(QPalette::Background,QBrush(background.scaled(this->size())));
+    this->setPalette(pale);
     //mainlayout->setSpacing(10);
-    mainlayout->setRowStretch(0,1);
-    mainlayout->setRowStretch(1,1);
-    mainlayout->setRowStretch(2,1);
-    mainlayout->setRowStretch(3,1);
-    mainlayout->setRowStretch(4,1);
+    //mainlayout->setRowStretch(0,1);
+    //mainlayout->setRowStretch(1,1);
+    //mainlayout->setRowStretch(2,1);
+    //mainlayout->setRowStretch(3,1);
+    //mainlayout->setRowStretch(4,1);
 
-    mainlayout->setColumnStretch(0,1);
-    mainlayout->setColumnStretch(1,1);
-    mainlayout->setColumnStretch(2,1);
-    mainlayout->setColumnStretch(3,1);
-    mainlayout->setColumnStretch(4,1);
-    mainlayout->setColumnStretch(5,3);
+    //mainlayout->setColumnStretch(0,1);
+    //mainlayout->setColumnStretch(1,1);
+    //mainlayout->setColumnStretch(2,1);
+    //mainlayout->setColumnStretch(3,1);
+    //mainlayout->setColumnStretch(4,1);
+    //mainlayout->setColumnStretch(5,1);
     //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
     //mainlayout->setRowStretch(0,1);
     //mainlayout->setSizeConstraint(QLayout::SetFixedSize);
@@ -147,6 +159,13 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     //setLayout(frame);
 
     //ui->setupUi(this);
+}
+
+void Dialog::resizeEvent(QResizeEvent *)
+{
+    pale = this->palette();
+    pale.setBrush(QPalette::Background,QBrush(background.scaled(this->size(),Qt::KeepAspectRatioByExpanding)));
+    this->setPalette(pale);
 }
 
 void Dialog::button_0_clicked()
@@ -249,7 +268,7 @@ void Dialog::button_equ_clicked()
     if(resault->text()[resault->text().length()-1] != '=')
         resault->insert("=");
     str = resault->text();
-    historydata->append(str);
+    //historydata->append(str);
     resault->clear();
     QString tempStr;
     QString erro_str;
@@ -257,6 +276,7 @@ void Dialog::button_equ_clicked()
     try
     {
         analyze(equation);
+        historydata->append(str);
         vector<num> t = numbers(equation);
         vector<char> p = signs(equation);
         brancket check = checksign(p);
@@ -306,6 +326,7 @@ void Dialog::button_equ_clicked()
             break;
         }
     }
+    str.clear();
 }
 Dialog::~Dialog()
 {
