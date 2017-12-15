@@ -4,5 +4,5 @@
   - Branckets and Power
   - Negative number
 - Plan
-  - Make the ui looks better
+  - Make the ui looks better  
 ![image](https://github.com/Pryriat/Caculator/blob/develop/screenshot.png)
