@@ -40,6 +40,7 @@ protected:
     QPushButton *button_times;
     QPushButton *button_equ;
     QPushButton *button_AC;
+    QPushButton *button_BACK;
     QLabel* history;
     QTextEdit* history_edit;
     QString* historydata;
@@ -67,6 +68,7 @@ private slots:
     void button_times_clicked();
     void button_equ_clicked();
     void button_AC_clicked();
+    void button_BACK_clicked();
 public:
     explicit Dialog(QWidget *parent = 0);
     void setbutton(QPushButton* p, QFont* font, QSize* size, QGraphicsOpacityEffect* effect);

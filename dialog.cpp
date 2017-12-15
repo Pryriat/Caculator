@@ -52,6 +52,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     button_dot = new QPushButton(".");
     button_equ = new QPushButton("=");
     button_AC = new QPushButton("AC");
+    button_BACK = new QPushButton("<");
 
     setbutton(button_0,&font,&size,p);
     setbutton(button_1,&font,&size,p);
@@ -73,6 +74,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     setbutton(button_dot,&font,&size,p);
     setbutton(button_equ,&font,&size,p);
     setbutton(button_AC,&font,&size,p);
+    setbutton(button_BACK,&font,&size,p);
 
     resault = new QLineEdit();
     resault->setFixedHeight(50);
@@ -91,7 +93,8 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     history_edit->setReadOnly(true);
 
     QGridLayout* mainlayout = new QGridLayout(this);
-    mainlayout->addWidget(resault,0,0,1,5);
+    mainlayout->addWidget(resault,0,0,1,4);
+    mainlayout->addWidget(button_BACK,0,4,1,1);
     mainlayout->addWidget(button_1,1,0,1,1);
     mainlayout->addWidget(button_2,1,1,1,1);
     mainlayout->addWidget(button_3,1,2,1,1);
@@ -155,6 +158,7 @@ Dialog::Dialog(QWidget *parent) :QDialog(parent)
     connect(button_times,SIGNAL(clicked(bool)),this,SLOT(button_times_clicked()));
     connect(button_AC,SIGNAL(clicked(bool)),this,SLOT(button_AC_clicked()));
     connect(button_equ,SIGNAL(clicked(bool)),this,SLOT(button_equ_clicked()));
+    connect(button_BACK,SIGNAL(clicked(bool)),this,SLOT(button_BACK_clicked()));
 
     //setLayout(frame);
 
@@ -263,6 +267,11 @@ void Dialog::button_AC_clicked()
     //str.clear();
     resault->clear();
 }
+void Dialog::button_BACK_clicked()
+{
+    resault->backspace();
+}
+
 void Dialog::button_equ_clicked()
 {
     if(resault->text()[resault->text().length()-1] != '=')
