@@ -7,4 +7,4 @@
   - Make the ui looks better  
   - add more functions
   
-![image](http://ozhtfx691.bkt.clouddn.com//github/calculatorcalculator_preview.png)
+![image](https://tinytracer-1256246079.cos.ap-guangzhou.myqcloud.com/github/calculatorcalculator_preview.png)
